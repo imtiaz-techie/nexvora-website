@@ -1,0 +1,100 @@
+@import "tailwindcss";
+
+/* ============================================================
+   DESIGN SYSTEM TOKENS
+   navy  – primary corporate colour (text, dark sections)
+   brand – azure action colour (buttons, links, highlights)
+   accent – cyan highlight (gradients, details)
+   ============================================================ */
+@theme inline {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-jakarta), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  --color-navy-50: #f2f5fb;
+  --color-navy-100: #e3e9f5;
+  --color-navy-200: #c4d0e8;
+  --color-navy-300: #94a6cc;
+  --color-navy-400: #6078a8;
+  --color-navy-500: #3f5687;
+  --color-navy-600: #2c4170;
+  --color-navy-700: #1f3260;
+  --color-navy-800: #142450;
+  --color-navy-900: #0a1a3f;
+  --color-navy-950: #050e26;
+
+  --color-brand-50: #eef5ff;
+  --color-brand-100: #d9e8ff;
+  --color-brand-200: #bbd6ff;
+  --color-brand-300: #8cbbff;
+  --color-brand-400: #5695ff;
+  --color-brand-500: #2f6ff6;
+  --color-brand-600: #1d55e0;
+  --color-brand-700: #1a44b8;
+  --color-brand-800: #1c3b91;
+  --color-brand-900: #1c3573;
+
+  --color-accent-300: #67e8f9;
+  --color-accent-400: #22d3ee;
+  --color-accent-500: #06b6d4;
+
+  --animate-marquee: marquee 40s linear infinite;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+  }
+  body {
+    @apply bg-white text-slate-600 font-sans;
+  }
+  h1, h2, h3, h4, h5 {
+    @apply font-display text-navy-900 tracking-tight;
+  }
+  ::selection {
+    @apply bg-brand-500 text-white;
+  }
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-brand-500;
+  }
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+  .section-y {
+    @apply py-20 md:py-28;
+  }
+  .text-gradient {
+    @apply bg-gradient-to-r from-brand-400 via-accent-400 to-brand-300 bg-clip-text text-transparent;
+  }
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, rgb(255 255 255 / 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(255 255 255 / 0.05) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+  .bg-grid-light {
+    background-image:
+      linear-gradient(to right, rgb(10 26 63 / 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(10 26 63 / 0.05) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+  .input {
+    @apply w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-navy-900 placeholder:text-slate-400 transition focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 focus:outline-none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
